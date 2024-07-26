@@ -1,0 +1,11 @@
+product_id,name,price,category
+P001,Product 1,100.0,Dairy
+P002,Product 2,200.0,Produce
+P003,Product 3,150.0,Beverages
+P004,Product 4,50.0,Bakery
+P005,Product 5,300.0,Meat
+P006,Product 6,75.0,Snacks
+P007,Product 7,120.0,Frozen Foods
+P008,Product 8,400.0,Seafood
+P009,Product 9,180.0,Drinks
+P010,Product 10,130.0,Fruits
