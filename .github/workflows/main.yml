@@ -24,7 +24,9 @@ jobs:
       run: pytest tests
 
     - name: Set up JMeter
-      run: sudo apt-get install jmeter -y
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jmeter
 
     - name: Run JMeter tests
       run: jmeter -n -t path/to/your_test_plan.jmx -l results.jtl
