@@ -21,7 +21,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run Pytest
-      run: pytest tests
+      run: pytest C:\Users\My Pc\Downloads\Python project Supermarket\Python project Supermarket\test_main.py
 
     - name: Set up JMeter
       run: |
@@ -29,4 +29,4 @@ jobs:
         sudo apt-get install -y jmeter
 
     - name: Run JMeter tests
-      run: jmeter -n -t path/to/your_test_plan.jmx -l results.jtl
+      run: jmeter -n -t C:\Users\My Pc\Downloads\Python project Supermarket\Python project Supermarket\test_main.py -l results.jtl
