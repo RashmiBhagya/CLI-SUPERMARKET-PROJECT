@@ -15,7 +15,7 @@ def test_database_singleton():
 # Test Authentication
 def test_login_success():
     auth = Authentication()
-    with patch('builtins.input', side_effect=['admin', 'password123']):
+    with patch('builtins.input', side_effect=['admin', 'admin']):
         user = auth.login()
         assert user is not None
         assert user.username == 'admin'
@@ -28,7 +28,7 @@ def test_login_failure():
 
 def test_logout(capsys):
     auth = Authentication()
-    user = User('admin', 'password123')
+    user = User('admin', 'admin')
     auth.logout(user)
     captured = capsys.readouterr()
     assert "User admin logged out successfully." in captured.out
@@ -70,7 +70,7 @@ def test_perform_monthly_sales_analysis(monkeypatch):
 
 def test_main_menu(monkeypatch):
     auth = Authentication()
-    user = User('admin', 'password123')
+    user = User('admin', 'admin')
 
     monkeypatch.setattr('builtins.input', lambda _: '7')
     exit_program = main_menu(auth, user)

@@ -84,7 +84,7 @@ class Authentication:
         self.users = self.load_users()
 
     def load_users(self):
-        return {'admin': 'password123', 'user1': 'pass1234'}
+        return {'admin': 'admin'}
 
     def login(self):
         print("\n=== Login ===")
@@ -200,6 +200,10 @@ def perform_monthly_sales_analysis(factory):
             print("Invalid choice. Please try again.")
 
 def main_menu(auth, user):
+    # Ensure the database is loaded before any analysis
+    db = DatabaseSingleton().get_database()
+    db.load_data('data/branches.csv', 'data/sales.csv', 'data/products.csv')
+    
     while True:
         print("\n--- Menu ---")
         print("1. Monthly Sales Analysis")
@@ -226,11 +230,9 @@ def main_menu(auth, user):
             print_price_analysis_table(product_id, avg_price, price_variation)
 
             # fetch prices from the database again for plotting
-            db = DatabaseSingleton().get_database()
             prices = [sale.item_price for branch in db.get_branches() for sale in branch.sales if sale.product.product_id == product_id]
             plot_price_variation(prices)
         elif choice == '3':
-            db = DatabaseSingleton().get_database()
             branches = db.get_branches()
             strategy = PopularProductsAnalysis(branches)
             popular_products = strategy.analyze()
@@ -239,7 +241,6 @@ def main_menu(auth, user):
         elif choice == '4':
             sales_distribution_analysis()
         elif choice == '5':
-            db = DatabaseSingleton().get_database()
             branches = db.get_branches()
             strategy = WeeklySalesAnalysis(branches)  
             weekly_sales = strategy.analyze(year=2024)
